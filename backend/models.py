@@ -19,6 +19,9 @@ class Task(Base):
     # relationship to reminders
     reminders = relationship("Reminder", back_populates="task", cascade="all, delete-orphan")
 
+    class Config:
+        from_attributes = True  # instead of orm_mode = True
+
 class Note(Base):
     __tablename__ = "notes"
     id = Column(Integer, primary_key=True, index=True)
