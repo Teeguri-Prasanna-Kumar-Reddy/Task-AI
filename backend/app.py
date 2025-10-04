@@ -184,7 +184,6 @@ from sqlalchemy.orm import Session
 from dateparser import parse as dateparse
 from datetime import datetime
 import pytz, json
-import google.generativeai as genai
 import os
 
 
