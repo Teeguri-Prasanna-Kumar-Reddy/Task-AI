@@ -9,7 +9,6 @@ streamlit_javascript
 google.generativeai
 
 faster-whisper
-python-multipart==0.0.6
 
 # Optional/advanced (only install if you want AI local models)
 # transformers==4.34.0
