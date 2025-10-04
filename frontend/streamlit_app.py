@@ -247,40 +247,73 @@ with tab1:
     # st.components.v1.html(VOICE_HTML, height=180)
 
     # === Voice Input (mobile friendly via Whisper backend) ===
+    # st.write("---")
+    # st.subheader("🎤 Voice Input (Whisper)")
+    # audio_bytes = st.audio_input("Record your voice")
+
+    # if audio_bytes is not None:
+    #     st.info("⏳ Transcribing...")
+    #     files = {"file": ("voice.wav", audio_bytes, "audio/wav")}
+    #     try:
+    #         # Call backend /stt for transcription
+    #         stt_resp = requests.post(f"{BACKEND_URL}/stt", files=files, data={"language": "en"})
+    #         if stt_resp.status_code == 200:
+    #             text = stt_resp.json().get("text", "")
+    #             st.success(f"Recognized: {text}")
+
+    #             # Send to /tasks/voice for task creation
+    #             task_resp = requests.post(f"{BACKEND_URL}/tasks/voice", json={"text": text})
+    #             # print("new task response:",task_resp)
+    #             if task_resp.status_code == 200:
+    #                 new_task = task_resp.json()
+    #                 # print(new_task)
+    #                 st.success(f"✅ Task created: {new_task['title']}")
+
+    #                 # 🔹 Use dict {task_id: timestamp} instead of list
+    #                 # if "highlight_ids" not in st.session_state:
+    #                 #     st.session_state["highlight_ids"] = {}
+    #                 # st.session_state["highlight_ids"][new_task["id"]] = time.time()
+
+    #                 # st.rerun()
+    #             else:
+    #                 st.error(f"Task creation failed: {task_resp.text}")
+    #         else:
+    #             st.error(f"STT failed: {stt_resp.text}")
+    #     except Exception as e:
+    #         st.error(f"Error: {e}")
+
+    # === Voice Input (mobile + backend Whisper) ===
     st.write("---")
-    st.subheader("🎤 Voice Input (Whisper)")
-    audio_bytes = st.audio_input("Record your voice")
+    st.subheader("🎤 Add Task by Voice")
+
+    audio_bytes = st.audio_input("Record a task")
 
     if audio_bytes is not None:
         st.info("⏳ Transcribing...")
         files = {"file": ("voice.wav", audio_bytes, "audio/wav")}
         try:
-            # Call backend /stt for transcription
+            # Step 1: Transcribe with backend STT
             stt_resp = requests.post(f"{BACKEND_URL}/stt", files=files, data={"language": "en"})
             if stt_resp.status_code == 200:
-                text = stt_resp.json().get("text", "")
-                st.success(f"Recognized: {text}")
+                text = stt_resp.json().get("text", "").strip()
+                if text:
+                    st.success(f"Recognized: {text}")
 
-                # Send to /tasks/voice for task creation
-                task_resp = requests.post(f"{BACKEND_URL}/tasks/voice", json={"text": text})
-                # print("new task response:",task_resp)
-                if task_resp.status_code == 200:
-                    new_task = task_resp.json()
-                    # print(new_task)
-                    st.success(f"✅ Task created: {new_task['title']}")
-
-                    # 🔹 Use dict {task_id: timestamp} instead of list
-                    # if "highlight_ids" not in st.session_state:
-                    #     st.session_state["highlight_ids"] = {}
-                    # st.session_state["highlight_ids"][new_task["id"]] = time.time()
-
-                    # st.rerun()
+                    # Step 2: Create task with recognized text
+                    task_resp = requests.post(f"{BACKEND_URL}/tasks/voice", json={"text": text})
+                    if task_resp.status_code == 200:
+                        new_task = task_resp.json()
+                        st.success(f"✅ Task created: {new_task['title']}")
+                        st.rerun()
+                    else:
+                        st.error(f"Task creation failed: {task_resp.text}")
                 else:
-                    st.error(f"Task creation failed: {task_resp.text}")
+                    st.warning("No speech detected. Please try again.")
             else:
                 st.error(f"STT failed: {stt_resp.text}")
         except Exception as e:
             st.error(f"Error: {e}")
+
 
 
 with tab2:
