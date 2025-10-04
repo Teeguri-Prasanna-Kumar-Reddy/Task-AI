@@ -218,8 +218,7 @@ def extract_task_from_gemini(resp):
         return {}
 
 
-genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
-
+gemini = GeminiWrapper(model="gemini-2.0-flash")
 
 @app.post("/tasks/voice")
 def api_create_task_voice(payload: dict = Body(...), db: Session = Depends(get_db)):
@@ -237,7 +236,6 @@ def api_create_task_voice(payload: dict = Body(...), db: Session = Depends(get_d
 
     # --- Step 1: Try Gemini structured extraction ---
     try:
-        model = genai.GenerativeModel("gemini-2.0-flash")
         prompt = f"""
         You are a task manager assistant.
         The user said: "{text}"
@@ -259,7 +257,7 @@ def api_create_task_voice(payload: dict = Body(...), db: Session = Depends(get_d
         - Title must be short and clear.
         """
 
-        resp = model.generate_content(prompt)
+        resp = gemini.query(prompt)
         parsed = extract_task_from_gemini(resp)
         # print(parsed)
 

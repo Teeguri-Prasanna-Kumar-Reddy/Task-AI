@@ -90,4 +90,7 @@ class GeminiWrapper:
         prompt = f"Suggest 3 short tags or categories for the following text:\n\n{text}"
         raw = self._call(prompt)
         return [tag.strip() for tag in raw.replace("\n", ",").split(",") if tag.strip()]
+    
+    def query_voice(self, prompt: str) -> str:
+        return self._call(prompt)
 

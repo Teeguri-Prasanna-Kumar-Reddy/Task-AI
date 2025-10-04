@@ -6,7 +6,6 @@ SpeechRecognition
 dateparser
 streamlit_js_eval
 streamlit_javascript
-google.generativeai
 
 faster-whisper
 
