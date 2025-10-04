@@ -1,11 +1,11 @@
 fastapi==0.95.2
-uvicorn[standard]==0.22.0
+uvicorn==0.23.2
 SQLAlchemy==1.4.49
 pydantic==1.10.12
 python-dotenv==1.0.0
 requests==2.31.0
 pytz
-streamlit
+streamlit==1.27.2
 
 SpeechRecognition
 dateparser
@@ -14,7 +14,7 @@ streamlit_javascript
 google.generativeai
 
 faster-whisper
-python-multipart
+python-multipart==0.0.6
 
 # Optional/advanced (only install if you want AI local models)
 # transformers==4.34.0
