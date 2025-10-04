@@ -8,7 +8,6 @@ pytz
 streamlit
 
 SpeechRecognition
-pyaudio
 dateparser
 streamlit_js_eval
 streamlit_javascript
