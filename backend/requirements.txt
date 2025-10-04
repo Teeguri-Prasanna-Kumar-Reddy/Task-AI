@@ -1,23 +1,12 @@
 python-dotenv==1.0.0
 pytz
-streamlit==1.27.2
+# streamlit==1.27.2
 
-SpeechRecognition
+# SpeechRecognition
 dateparser
-streamlit_js_eval
-streamlit_javascript
 
 faster-whisper
 
-# Optional/advanced (only install if you want AI local models)
-# transformers==4.34.0
-# torch   # large, only if using HF models locally
-
-# Frontend (for part 2)
-# streamlit==1.26.0
-
-# Optional notifications
-plyer==2.0.0
 
 
 
@@ -29,5 +18,5 @@ alembic==1.13.2
 python-multipart==0.0.9
 requests==2.32.3
 apscheduler==3.10.4
-pytelegrambotapi==4.22.1
+# pytelegrambotapi==4.22.1
 
