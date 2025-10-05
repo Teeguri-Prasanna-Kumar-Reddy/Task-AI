@@ -82,7 +82,7 @@ App URL: 👉 http://localhost:8501
 
 ## 🧠 Application Workflow
 
-###🗓️ 1. Manage Tasks
+### 🗓️ 1. Manage Tasks
 
 Add manually (via sidebar form)
 
@@ -98,7 +98,7 @@ Today’s tasks
 
 Overdue tasks
 
-###📝 2. Manage Notes
+### 📝 2. Manage Notes
 
 Add new notes (title + content)
 
@@ -106,13 +106,13 @@ View and expand notes
 
 Delete notes from dashboard
 
-###🔔 3. View Reminders
+### 🔔 3. View Reminders
 
 See scheduled reminders per task
 
 All times are localized to Asia/Kolkata (IST)
 
-###🎤 4. Voice Task Creation
+### 🎤 4. Voice Task Creation
 
 Record voice directly in browser
 
@@ -132,7 +132,7 @@ Creates task:
   "tags": "voice"
 }
 
-###🤖 5. AI Assistant
+### 🤖 5. AI Assistant
 
 Ask: “What are my overdue tasks?”
 
@@ -140,7 +140,7 @@ Ask: “Summarize my last note.”
 
 Use /ai/query for Q&A and /ai/summarize for summarization
 
-##🧰 Backend API Endpoints
+## 🧰 Backend API Endpoints
 Method	Endpoint	Description
 GET	/tasks	List tasks (filter: today, overdue)
 POST	/tasks	Add new task
@@ -155,7 +155,7 @@ POST	/stt	Speech-to-text endpoint
 POST	/ai/query	Ask AI questions about tasks/notes
 POST	/ai/summarize	Summarize text
 
-##☁️ Deployment Guide
+## ☁️ Deployment Guide
 Option 1 — Google Cloud Run (Recommended ✅)
 
 Enable Cloud Run API
@@ -221,7 +221,7 @@ App responds:
 
 
 
-🧑‍💻 Author
+## 🧑‍💻 Author
 
 Teeguri Prasanna Kumar Reddy
 💼 AI Engineer | Backend Developer
