@@ -1,6 +1,7 @@
 # 🧠 TaskAI — AI-Powered Daily Task & Notes Manager
 
-**TaskAI** is a smart productivity assistant that helps you manage your **tasks, notes, reminders, and daily priorities** — all powered by **FastAPI**, **Streamlit**, and **Gemini AI**.
+**TaskAI** is an intelligent productivity assistant that helps you manage your **tasks, notes, reminders, and AI insights** — all in one place.  
+It integrates **voice commands**, **speech-to-text**, and **AI summarization** to streamline your daily workflow.
 
 It lets you:
 - 🎤 Create tasks using **voice input**
@@ -17,8 +18,8 @@ It lets you:
 |----------|-------------|
 | 🗓️ **Task Manager** | Add, view, filter, update, and delete tasks with due dates, priorities, and tags. |
 | 📝 **Notes Manager** | Save, view, and delete notes for quick information storage. |
-| 🎤 **Voice Task Creation** | Speak your tasks naturally — automatically transcribed and added as structured tasks. |
-| 🔔 **Reminders System** | View reminders for tasks directly from the dashboard and reminders will be sent to the telegram 15mins prior to the deadline. |
+| 🎤 **Voice Task Creation** | Record voice → AI converts to text → Creates task automatically.  |
+| 🔔 **Reminders System** | Automatically fetch reminders for upcoming or overdue tasks and reminders will be sent to the telegram 15mins prior to the deadline. |
 | 🧠 **AI Assistant** | Ask questions about your tasks or notes (e.g., "What’s due today?"). |
 | 🗒️ **Summarizer** | Paste text and get a short AI-generated summary. |
 
@@ -79,81 +80,81 @@ streamlit run streamlit_app.py
 
 App URL: 👉 http://localhost:8501
 
+---
 
 ## 🧠 Application Workflow
 
 ### 🗓️ 1. Manage Tasks
+- Add manually via sidebar form.  
+- Add tasks by **voice** (record and auto-create).  
+- Mark tasks as ✅ *Done* or 🗑 *Delete*.  
+- Filter tasks by:
+  - All tasks  
+  - Today’s tasks  
+  - Overdue tasks  
 
-Add manually (via sidebar form)
-
-Add by voice (🎤 record and auto-create)
-
-Mark tasks as Done or Delete
-
-Filter by:
-
-All tasks
-
-Today’s tasks
-
-Overdue tasks
+---
 
 ### 📝 2. Manage Notes
+- Add new notes (title + content).  
+- Expand to view note details.  
+- Delete notes directly from the dashboard.  
 
-Add new notes (title + content)
-
-View and expand notes
-
-Delete notes from dashboard
+---
 
 ### 🔔 3. View Reminders
+- See scheduled reminders per task.  
+- All reminders are shown in **Asia/Kolkata (IST)** timezone.  
 
-See scheduled reminders per task
-
-All times are localized to Asia/Kolkata (IST)
+---
 
 ### 🎤 4. Voice Task Creation
+Record a voice message — TaskAI automatically creates the task!
 
-Record voice directly in browser
+**Example Input:**  
+> “Remind me to send project report to Sairam tomorrow at 9 AM.”
 
-App sends audio to backend /stt
-
-Gemini AI parses recognized text → creates task automatically
-
-Example:
-
-“Remind me to send project report to sairam tomorrow at 9 AM”
-Creates task:
-
+**Resulting Task:**
 {
-  "title": "Send project report to sairam",
+  "title": "Send project report to Sairam",
   "due_datetime": "2025-10-05T09:00:00+05:30",
   "priority": 2,
   "tags": "voice"
 }
 
+
 ### 🤖 5. AI Assistant
 
-Ask: “What are my overdue tasks?”
+Ask natural questions about your data:
 
-Ask: “Summarize my last note.”
+“What are my overdue tasks?”
 
-Use /ai/query for Q&A and /ai/summarize for summarization
+“Summarize my last note.”
+
+Supports:
+
+/ai/query — Question-answering
+
+/ai/summarize — Text summarization
+
 
 ## 🧰 Backend API Endpoints
-Method	Endpoint	Description
-GET	/tasks	List tasks (filter: today, overdue)
-POST	/tasks	Add new task
-PUT	/tasks/{id}	Update task
-DELETE	/tasks/{id}	Delete task
-GET	/reminders	Fetch reminders
-POST	/notes	Add note
-GET	/notes	Get all notes
-DELETE	/notes/{id}	Delete note
-POST	/tasks/voice	Create task from text
-POST	/stt	Speech-to-text endpoint
-POST	/ai/query	Ask AI questions about tasks/notes
-POST	/ai/summarize	Summarize text
+
+| Method | Endpoint           | Description                                 |
+|--------|--------------------|---------------------------------------------|
+| GET    | /tasks             | List tasks (filter: today, overdue)         |
+| POST   | /tasks             | Add new task                                |
+| PUT    | /tasks/{id}        | Update task                                 |
+| DELETE | /tasks/{id}        | Delete task                                 |
+| GET    | /reminders         | Fetch reminders                             |
+| POST   | /notes             | Add note                                    |
+| GET    | /notes             | Get all notes                               |
+| DELETE | /notes/{id}        | Delete note                                 |
+| POST   | /tasks/voice       | Create task from text                       |
+| POST   | /stt               | Speech-to-text endpoint                     |
+| POST   | /ai/query          | Ask AI questions about tasks/notes          |
+| POST   | /ai/summarize      | Summarize text                              |
+
 
 ## ☁️ Deployment Guide
 Option 1 — Google Cloud Run (Recommended ✅)
@@ -190,7 +191,7 @@ DATABASE_URL=sqlite:///./taskai.db
 
 🔐 Environment Variables
 Key	Description
-GEMINI_API_KEY	Google Gemini AI API key
+GEMINI_API_KEY	Google Gemini AI API key 
 DATABASE_URL	SQLite or Postgres URL
 BACKEND_URL	Backend endpoint for Streamlit (default: localhost:8000)
 
@@ -220,7 +221,7 @@ App responds:
 
 
 
-
+----
 ## 🧑‍💻 Author
 
 Teeguri Prasanna Kumar Reddy
